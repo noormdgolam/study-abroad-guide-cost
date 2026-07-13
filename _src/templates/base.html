@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site.name }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+    
+    <link rel="canonical" href="{{ site.url }}{{ request_path|default('/') }}">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0d233a">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}{{ site.name }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ site.description }}{% endblock %}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ site.url }}{{ request_path|default('/') }}">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="{{ site.social.twitter }}">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense_client_id }}" crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics (GA4) placeholder -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_measurement_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.ga_measurement_id }}');
+    </script>
+    
+    {% block head_schemas %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ site.brand }}",
+      "url": "{{ site.url }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ site.url }}/search/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <a href="/" class="brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                </svg>
+                {{ site.brand }}
+            </a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/search/">Search</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 {{ site.brand }}. All rights reserved.</p>
+            <div style="margin-top: 15px;">
+                <a href="/about/">About Us</a>
+                <a href="/contact/">Contact</a>
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/terms/">Terms of Service</a>
+                <a href="/disclaimer/">Disclaimer</a>
+            </div>
+            
+            <div class="newsletter-box" style="margin-top: 40px;">
+                <h3>Subscribe for Study Abroad Updates</h3>
+                <p>Get the latest cost comparisons directly to your inbox.</p>
+                <form action="#" method="POST" id="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
