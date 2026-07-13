@@ -1,14 +1,14 @@
 :root {
-  /* Premium Educational Palette */
-  --primary-color: #0d233a; /* Deep Academic Blue */
-  --secondary-color: #2b547e; /* Lighter Blue */
-  --accent-color: #fca311; /* Vibrant Gold/Orange */
-  --background-color: #f8f9fa;
+  /* Luxurious Palette */
+  --primary-color: #0f172a; /* Deep Slate / Midnight Blue */
+  --secondary-color: #1e293b; /* Slightly lighter slate */
+  --accent-color: #d4af37; /* Champagne Gold */
+  --background-color: #faf9f6; /* Off-white / Pearl */
   --surface-color: #ffffff;
-  --text-main: #2b2d42;
-  --text-muted: #6c757d;
-  --border-color: #e9ecef;
-  --nav-bg: rgba(255, 255, 255, 0.9);
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --nav-bg: rgba(250, 249, 246, 0.9);
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
   --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
   --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
@@ -19,14 +19,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary-color: #fca311;
-    --background-color: #121212;
-    --surface-color: #1e1e1e;
-    --text-main: #f8f9fa;
-    --text-muted: #adb5bd;
-    --border-color: #2b2b2b;
-    --nav-bg: rgba(30, 30, 30, 0.9);
-    --secondary-color: #1f3b58;
+    --primary-color: #d4af37;
+    --background-color: #0a0a0a;
+    --surface-color: #171717;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border-color: #262626;
+    --nav-bg: rgba(10, 10, 10, 0.9);
+    --secondary-color: #262626;
   }
 }
 
@@ -88,7 +88,7 @@ header {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #0d233a 0%, #2b547e 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: white;
   padding: 80px 20px;
   text-align: center;
