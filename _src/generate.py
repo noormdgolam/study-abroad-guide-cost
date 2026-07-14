@@ -36,9 +36,36 @@ def parse_markdown_files(directory, content_type='article'):
             with open(filepath, 'r', encoding='utf-8') as f:
                 post = frontmatter.load(f)
                 
+                import random
+                
+                spin_intros = [
+                    f"<p>Studying abroad in {post.get('category', 'this country').title()} offers a unique opportunity to expand your horizons. However, understanding the financial requirements is crucial for a smooth transition. This guide will walk you through the essential costs and scholarship opportunities.</p>",
+                    f"<p>Are you considering pursuing your education in {post.get('category', 'this country').title()}? While the academic benefits are undeniable, managing the associated costs is often the biggest hurdle. Let's break down everything you need to know about funding your studies.</p>",
+                    f"<p>Embarking on an international academic journey to {post.get('category', 'this country').title()} can be life-changing. From tuition fees to living expenses, we have compiled a comprehensive breakdown to help you plan your budget effectively.</p>"
+                ]
+                
+                spin_tips = [
+                    "<h3>Pro Tip for International Students</h3><p>Always apply for scholarships well before the deadline. Many universities allocate their financial aid on a first-come, first-served basis, meaning early applicants have a significant advantage.</p>",
+                    "<h3>Financial Planning Advice</h3><p>Beyond tuition, don't forget to factor in the cost of health insurance, visa fees, and initial setup costs (like deposits for accommodation). These hidden expenses can quickly add up.</p>",
+                    "<h3>Maximizing Your Chances</h3><p>When applying for funding, tailor your personal statement to highlight how your goals align with the specific values of the scholarship provider. Generic essays are rarely successful.</p>"
+                ]
+                
+                spin_faqs = [
+                    "<h3>Frequently Asked Questions</h3><h4>Can international students work while studying?</h4><p>In most countries, international students are permitted to work part-time (usually up to 20 hours per week) during the academic semester and full-time during holidays. Always check the specific conditions attached to your student visa.</p>",
+                    "<h3>Frequently Asked Questions</h3><h4>Are there fully-funded scholarships available?</h4><p>Yes, fully-funded scholarships exist, though they are highly competitive. They typically cover full tuition, living expenses, and sometimes even flights. Focus on government-sponsored programs (like Chevening, Fulbright, or DAAD) or university-specific excellence awards.</p>",
+                    "<h3>Frequently Asked Questions</h3><h4>Do I need to prove my financial capacity for a student visa?</h4><p>Yes. Almost all immigration authorities require proof of sufficient funds to cover your first year of tuition and living expenses before they will issue a student visa.</p>"
+                ]
+                
                 # Convert markdown to html
                 md.reset()
                 html_content = md.convert(post.content)
+                
+                # Inject spintax
+                if content_type == 'article':
+                    injected_content = random.choice(spin_intros) + html_content + random.choice(spin_tips) + random.choice(spin_faqs)
+                else:
+                    injected_content = html_content
+                
                 toc = md.toc if hasattr(md, 'toc') else ''
                 
                 item = {
@@ -49,7 +76,7 @@ def parse_markdown_files(directory, content_type='article'):
                     'category': post.get('category', ''),
                     'is_pillar': post.get('is_pillar', False),
                     'key_takeaways': post.get('key_takeaways', []),
-                    'content': html_content,
+                    'content': injected_content,
                     'toc': toc,
                     'type': content_type,
                     'excerpt': post.get('excerpt', post.content[:150] + '...'),
