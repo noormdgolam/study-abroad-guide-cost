@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://study-abroad-guide-cost.bongshai.com/sitemap.xml
